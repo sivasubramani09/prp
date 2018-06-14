@@ -9,6 +9,7 @@ public class FlowControlStatements_12 {
 				System.out.println("Enter the number:\t");
 				Scanner sc = new Scanner(System.in);
 				int num = sc.nextInt();
+				sc.close();
 				int count = 0;
 				for(int i=1; i<=num; i++) {
 					if(num % i == 0) {

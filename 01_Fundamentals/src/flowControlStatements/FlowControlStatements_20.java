@@ -41,5 +41,6 @@ public class FlowControlStatements_20 {
 			System.out.println("Do you want to continue? Y/N");
 			ch = sc.next().charAt(0);
 		}while(ch == ('Y'|'y'));
+		sc.close();
 	} 
 }

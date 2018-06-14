@@ -13,6 +13,7 @@ public class FlowControlStatements_07 {
 		System.out.println("Enter a Character: ");
 		Scanner sc = new Scanner(System.in);
 		char ch = sc.next().charAt(0);
+		sc.close();
 		
 		if(Character.isUpperCase(ch)) {
 			
