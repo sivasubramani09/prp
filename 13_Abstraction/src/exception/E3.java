@@ -55,7 +55,7 @@ public class E3 {
 			System.out.println("Enter the index of the array element you want to access:");
 			int find = sc.nextInt();
 			sc.close();
-			System.out.println("The array element at the index "+find+"  ="+a[find]);
+			System.out.println("The array element at the index "+find+"  = "+a[find]);
 			System.out.println("The array element successfully accessed.");
 		}
 		catch(NumberFormatException e) {

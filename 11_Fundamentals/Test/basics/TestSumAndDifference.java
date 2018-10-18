@@ -1,6 +1,8 @@
 package basics;
 import org.junit.Test;
 
+import basics.SumAndDifference;
+
 import org.junit.Assert;
 
 public class TestSumAndDifference {
@@ -14,8 +16,6 @@ public class TestSumAndDifference {
 	public void testDiff() {
 		SumAndDifference s2 = new SumAndDifference();
 		double resultDiff = s2.diff(30, 20);
-		Assert.assertEquals(10, resultDiff,0);
-		
+		Assert.assertEquals(10, resultDiff,0);		
 	}
-
 }

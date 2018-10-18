@@ -10,13 +10,14 @@ public class FlowControlStatements_12 {
 				Scanner sc = new Scanner(System.in);
 				int num = sc.nextInt();
 				sc.close();
-				int count = 0;
-				for(int i=1; i<=num; i++) {
+				boolean isPrime = true;
+				for(int i=2; i<num; i++) {
 					if(num % i == 0) {
-						count++;
+						isPrime = false;
+						break;
 					}
 				}
-				if(count == 2) {
+				if(isPrime) {
 					System.out.println("The Given Number is a prime number.");
 				}
 				else {

@@ -1,4 +1,4 @@
-package ClassesAndObjects;
+package classesAndObjects;
 class Box{
 	double depth;
 	double width;
