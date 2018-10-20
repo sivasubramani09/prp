@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class OperationsOnStringList {
 	List<String> dict = new ArrayList<>();
 	static Scanner sc = new Scanner(System.in);
-	
 	protected void insert() {
 		System.out.print("Enter the item to be inserted: ");
 		dict.add(sc.next());
