@@ -4,7 +4,12 @@
 # Log file
 *.log
 
+# Eclipse files
 .metadata/
+.recommenders/
+
+# temporary files
+temp/
 
 # BlueJ files
 *.ctxt
