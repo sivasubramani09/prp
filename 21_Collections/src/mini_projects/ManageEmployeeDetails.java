@@ -45,7 +45,7 @@ public class ManageEmployeeDetails {
 			address = sc.next();
 			empList.add(new Employee(fName, lName, mNo, emailId, address));
 		}
-		
+		//Sort by first name
 		empList.sort(new Comparator<Employee>(){
 
 			@Override
