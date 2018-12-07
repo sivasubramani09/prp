@@ -14,17 +14,26 @@ public class BankDAO {
 	
 	
 	public int generateSequenceNumber() {
+		//need to be changed
 		return 1999;
 	}
 	
 	
 	public boolean validateAccount(String accountNumber) {
+		Statement stmt = null;
+		ResultSet resultSet = null;
 		try {
 			String query = "SELECT * FROM account_tbl WHERE account_number="+accountNumber;
-			Statement stmt = conn.createStatement();
-			ResultSet resultSet = stmt.executeQuery(query);
+			stmt = conn.createStatement();
+			resultSet = stmt.executeQuery(query);
 			if(resultSet.next()) {
 				return true;
+			}
+			if(resultSet != null) {
+				resultSet.close();
+			}
+			if(stmt!= null) {
+				stmt.close();
 			}
 		}
 		catch(Exception e) {
@@ -38,12 +47,20 @@ public class BankDAO {
 	
 	public float findBalance(String accountNumber) {
 		if(this.validateAccount(accountNumber)) {
+			Statement stmt = null;
+			ResultSet resultSet = null;
 			try {
-				Statement stmt = conn.createStatement();
+				stmt = conn.createStatement();
 				String query = "SELECT balance FROM account_tbl WHERE account_number="+accountNumber;
-				ResultSet resultSet = stmt.executeQuery(query);
+				resultSet = stmt.executeQuery(query);
 				if(resultSet.next()) {
 					return resultSet.getFloat(1);
+				}
+				if(resultSet!= null) {
+					resultSet.close();
+				}
+				if(stmt != null) {
+					stmt.close();
 				}
 			}
 			catch(Exception e) {
@@ -61,13 +78,17 @@ public class BankDAO {
 		Date transactionDate = transferBean.getDateOfTransaction();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String strDate= formatter.format(transactionDate);
+		Statement stmt = null;
 		String query = "INSERT INTO transfer_tbl VALUES("+transactionID+",'"+transferBean.getFromAccountNumber()+"','"+transferBean.getToAccountNumber()+"','"+strDate+"',"+transferBean.getAmount()+");";
 		int rowsAffected =0;
 		try {
-			Statement stmt = conn.createStatement();
+			stmt = conn.createStatement();
 			rowsAffected = stmt.executeUpdate(query);
 			if(rowsAffected>0) {
 				return  true;
+			}
+			if(stmt != null) {
+				stmt.close();
 			}
 		}
 		catch(Exception e) {
@@ -80,14 +101,18 @@ public class BankDAO {
 	public boolean updateBalance(String accountNumber, float newBalance) {
 		String query = "UPDATE account_tbl SET balance="+newBalance+"WHERE account_number="+accountNumber;
 		int rowsAffected =0;
+		Statement stmt = null;
 		try {
 			if(this.validateAccount(accountNumber)) {
-				Statement stmt = conn.createStatement();
+				stmt = conn.createStatement();
 				rowsAffected= stmt.executeUpdate(query);
 				//System.out.println("rows affected:"+rowsAffected);
 				if(rowsAffected>0) {
 					return true;
 				}
+			}
+			if(stmt != null) {
+				stmt.close();
 			}
 		}
 		catch(Exception e) {
@@ -95,9 +120,4 @@ public class BankDAO {
 		}
 		return false;
 	}
-//	public static void main(String[] args) {
-//		BankDAO bankDAO = new BankDAO();
-//		System.out.println(bankDAO.findBalance("1234567891"));
-//		System.out.println(bankDAO.updateBalance("1234567891", 100000));
-//	}
 }
